@@ -9,18 +9,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- tailwind + daisyUI link -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- tailwind.init.css link -->
-     <link rel="stylesheet" href="tailwind.init.css">
+    <link rel="stylesheet" href="tailwind.init.css">
     <title>Github Issues Tracker</title>
 
 </head>
 
-<body>
-    <h2>Main page</h2>
+<body class="bg-[#F8FAFC]">
+        <nav>
+            <div class="navbar bg-base-100 shadow-sm px-20 flex justify-between">
+                <div class="flex">
+                    <img class="w-9 h-full" src="./assets/github-logo.png" alt="">
+                    <a class="btn btn-ghost text-xl">Github Issues Tracker</a>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" placeholder="Search Issues" class="input input-bordered w-24 md:w-auto" />
+                    <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> New Issues</button>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <section>
+                
+            </section>
+        </main>
 
     <!-- Script file link -->
     <script src="./JS/script.js"></script>
