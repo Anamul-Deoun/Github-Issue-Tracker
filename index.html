@@ -28,17 +28,17 @@
                 <p class="text-[#64748B]">Sign in to manage your issues</p>
             </div>
         </div>
-        <fieldset class="fieldset">
+        <form class="fieldset">
             <!-- <legend class="fieldset-legend">Login</legend> -->
 
             <label class="label">Username</label>
-            <input type="text" class="input w-full mb-4" placeholder="Enter Username" />
+            <input type="text" id="username" class="input w-full mb-4" placeholder="Enter Username" required/>
 
             <label class="label">Password</label>
-            <input type="password" class="input w-full" placeholder="Enter Password" />
+            <input type="password" id="password" class="input w-full" placeholder="Enter Password" required/>
 
-            <button class="btn btn-primary mt-4">Sign In</button>
-        </fieldset>
+            <button type="button" id="login-btn" class="btn btn-primary mt-4">Sign In</button>
+        </form>
         <div class="divider">OR</div>
         <p class="text-[#64748B] text-sm text-center">Demo Credentials:</p>
         <div class="bg-base-300 text-lg text-center p-6 rounded-lg ">
