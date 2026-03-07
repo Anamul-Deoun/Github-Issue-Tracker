@@ -8,20 +8,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
-    
+
     <!-- tailwind + daisyUI link -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
+
+    <!-- tailwind.init.css link -->
+     <link rel="stylesheet" href="tailwind.init.css">
     <title>Login | Page</title>
+
 </head>
 
-<body>
-    <h2>Let's get start</h2>
+<body class="bg-[#F8FAFC] h-lvh flex items-center">
+    <section id="login-form" class="w-100 mx-auto bg-base-100 p-8 rounded-lg shadow">
+        <div class="login-head flex flex-col items-center">
+            <img class="" src="./assets/github-logo.png" alt="">
+            <div class="my-6 text-center">
+                <h2 class="text-2xl font-semibold">Github Issues Tracker</h2>
+                <p class="text-[#64748B]">Sign in to manage your issues</p>
+            </div>
+        </div>
+        <fieldset class="fieldset">
+            <!-- <legend class="fieldset-legend">Login</legend> -->
+
+            <label class="label">Username</label>
+            <input type="text" class="input w-full mb-4" placeholder="Enter Username" />
+
+            <label class="label">Password</label>
+            <input type="password" class="input w-full" placeholder="Enter Password" />
+
+            <button class="btn btn-primary mt-4">Sign In</button>
+        </fieldset>
+        <div class="divider">OR</div>
+        <p class="text-[#64748B] text-sm text-center">Demo Credentials:</p>
+        <div class="bg-base-300 text-lg text-center p-6 rounded-lg ">
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+        </div>
+    </section>
 
 
     <!-- Script file link -->
-     <script src="./JS/script.js"></script>
+    <script src="./JS/script.js"></script>
 </body>
 
 </html>
