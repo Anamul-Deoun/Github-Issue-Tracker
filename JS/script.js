@@ -18,11 +18,31 @@ if (loginBtn) {
 let currentStatus = 'all';
 
 const loadData = async () => {
+    const loadingText = document.getElementById("loading-text");
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const result = await res.json();
     const posts = Array.isArray(result) ? result : result.data;
-    displayCard(posts);
+    if (loadingText) loadingText.style.display = "none";
+
+    if (posts) {
+        displayCard(posts);
+    }
 };
+
+// const loadData = async () => {
+//     const loadingText = document.getElementById("loading-text");
+//     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
+//     const result = await res.json();
+
+//     const posts = Array.isArray(result) ? result : result.data;
+
+//     if (loadingText) loadingText.style.display = "none";
+
+//     if (posts) {
+//         displayCard(posts);
+//     }
+// };
+
 
 const searchIssues = async () => {
     const searchText = document.getElementById("search-input").value;
@@ -68,13 +88,12 @@ const updateButtonStyles = (activeStatus) => {
     const statuses = ['all', 'open', 'closed'];
     statuses.forEach(s => {
         const btn = document.getElementById(`btn-${s}`);
-        if (btn) { // বাটনটি পেজে আছে কি না চেক করে নেওয়া ভালো
+        if (btn) {
             s === activeStatus ? btn.classList.add('btn-primary') : btn.classList.remove('btn-primary');
         }
     });
 };
 
-// বিস্তারিত তথ্য দেখানোর নতুন ফাংশন
 const showDetails = (post) => {
     const modalContent = document.getElementById("modal-content");
     const statusColor = post.status?.toLowerCase() === 'open' ? 'bg-[#00A96E]' : 'bg-purple-500';
@@ -127,8 +146,8 @@ const displayCard = (posts) => {
 
     posts.forEach((post, index) => {
         const div = document.createElement("div");
-        div.className = "cursor-pointer h-full"; // পুরো কার্ড ক্লিকেবল করার জন্য
-        div.onclick = () => showDetails(post); // ক্লিকে মডাল ওপেন হবে
+        div.className = "cursor-pointer h-full";
+        div.onclick = () => showDetails(post);
 
         const priority = post.priority?.toLowerCase();
         let priorityClass = "text-gray-500 bg-gray-100";

@@ -17,13 +17,16 @@
 
     <title>Github Issues Tracker</title>
     <style>
-        body { font-family: 'Geist', sans-serif; }
+        body {
+            font-family: 'Geist', sans-serif;
+        }
     </style>
 </head>
 
 <body class="bg-[#F8FAFC]">
     <nav class="sticky top-0 z-50">
-        <div class="navbar bg-base-100 shadow-sm px-4 md:px-20 flex flex-col md:flex-row gap-4 py-4 md:py-2 justify-between">
+        <div
+            class="navbar bg-base-100 shadow-sm px-4 md:px-20 flex flex-col md:flex-row gap-4 py-4 md:py-2 justify-between">
             <div class="flex items-center gap-2">
                 <img class="w-8 h-8" src="./assets/github-logo.png" alt="logo">
                 <a class="text-lg md:text-xl font-bold">Github Issues Tracker</a>
@@ -31,13 +34,13 @@
             <div class="flex w-full md:w-auto gap-2">
                 <input id="search-input" onkeyup="searchIssues()" type="text" placeholder="Search Issues"
                     class="input input-bordered grow md:w-auto" />
-                <button class="btn btn-primary"><i class="fa fa-plus"></i> <span class="hidden md:inline">New Issues</span></button>
+                <button class="btn btn-primary"><i class="fa fa-plus"></i> <span class="hidden md:inline">New
+                        Issues</span></button>
             </div>
         </div>
     </nav>
 
     <main class="w-full max-w-6xl mx-auto px-4 py-8 md:py-15">
-
         <section class="mb-6">
             <div class="bg-white p-4 md:p-6 rounded-lg flex flex-wrap md:flex-nowrap gap-2 shadow">
                 <button onclick="filterIssues('all')" class="btn grow md:w-28 btn-primary" id="btn-all">All</button>
@@ -72,13 +75,19 @@
             </div>
 
             <div id="card-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 md:p-6">
-                </div>
+            </div>
         </section>
 
-        <dialog id="issue_modal" class="modal">
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            <p id="loading-text" class="text-center col-span-full py-10 text-gray-500 font-semibold">
+                Loading issues...
+            </p>
+        </div>
+
+        <div id="issue_modal" class="modal">
             <div class="modal-box w-11/12 max-w-4xl p-6 md:p-10 relative border-2 border-blue-400">
                 <div id="modal-content">
-                    </div>
+                </div>
                 <div class="modal-action">
                     <form method="dialog">
                         <button class="btn bg-indigo-600 text-white px-8">Close</button>
@@ -88,7 +97,7 @@
             <form method="dialog" class="modal-backdrop">
                 <button>close</button>
             </form>
-        </dialog>
+        </div>
     </main>
 
     <script src="./JS/script.js"></script>
