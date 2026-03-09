@@ -168,7 +168,7 @@ const displayCard = (posts) => {
                             ${post.priority}
                         </span>
                     </div>
-                    <h3 class="text-sm font-bold text-slate-800 mb-1 leading-tight line-clamp-2">${post.title}</h3>
+                    <h3 class="text-sm font-bold text-slate-800 mb-1 leading-tight line-clamp-1">${post.title}</h3>
                     <p class="text-[12px] text-slate-500 line-clamp-2 mb-4">${post.description}</p>
                     <div class="flex flex-wrap gap-2 mb-4">${labelsHTML}</div>
                 </div>
