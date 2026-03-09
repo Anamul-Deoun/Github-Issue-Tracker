@@ -68,19 +68,56 @@ const updateButtonStyles = (activeStatus) => {
     const statuses = ['all', 'open', 'closed'];
     statuses.forEach(s => {
         const btn = document.getElementById(`btn-${s}`);
-        if (s === activeStatus) {
-            btn.classList.add('btn-primary');
-        } else {
-            btn.classList.remove('btn-primary');
+        if (btn) { // বাটনটি পেজে আছে কি না চেক করে নেওয়া ভালো
+            s === activeStatus ? btn.classList.add('btn-primary') : btn.classList.remove('btn-primary');
         }
     });
+};
+
+// বিস্তারিত তথ্য দেখানোর নতুন ফাংশন
+const showDetails = (post) => {
+    const modalContent = document.getElementById("modal-content");
+    const statusColor = post.status?.toLowerCase() === 'open' ? 'bg-[#00A96E]' : 'bg-purple-500';
+
+    modalContent.innerHTML = `
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">${post.title}</h2>
+        <div class="flex items-center gap-3 mb-6">
+            <span class="${statusColor} text-white px-4 py-1 rounded-full text-sm font-medium">
+                ${post.status === 'open' ? 'Opened' : 'Closed'}
+            </span>
+            <p class="text-slate-500">• Opened by <span class="font-bold">${post.author || 'User'}</span> • ${post.date || '22/02/2026'}</p>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 mb-8">
+            ${post.labels ? post.labels.map(l => `<span class="border px-3 py-1 rounded-full text-[10px] font-bold uppercase text-slate-600 bg-slate-50">${l}</span>`).join('') : ''}
+        </div>
+
+        <p class="text-slate-600 text-lg mb-10 leading-relaxed">
+            ${post.description}
+        </p>
+
+        <div class="flex gap-20 border-t pt-6">
+            <div>
+                <p class="text-slate-400 text-sm mb-1 font-medium">Assignee:</p>
+                <p class="font-bold text-slate-800 text-lg">${post.author || 'User'}</p>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm mb-1 font-medium">Priority:</p>
+                <span class="bg-red-500 text-white px-6 py-1 rounded-full text-xs font-bold uppercase">
+                    ${post.priority}
+                </span>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('issue_modal').showModal();
 };
 
 const displayCard = (posts) => {
     const cardContainer = document.getElementById("card-container");
     const countElement = document.getElementById("issue-count");
 
-    countElement.innerText = posts ? posts.length : 0;
+    if (countElement) countElement.innerText = posts ? posts.length : 0;
     cardContainer.innerHTML = "";
 
     if (!posts || posts.length === 0) {
@@ -90,6 +127,8 @@ const displayCard = (posts) => {
 
     posts.forEach((post, index) => {
         const div = document.createElement("div");
+        div.className = "cursor-pointer h-full"; // পুরো কার্ড ক্লিকেবল করার জন্য
+        div.onclick = () => showDetails(post); // ক্লিকে মডাল ওপেন হবে
 
         const priority = post.priority?.toLowerCase();
         let priorityClass = "text-gray-500 bg-gray-100";
@@ -111,12 +150,17 @@ const displayCard = (posts) => {
             } else if (l === 'help wanted') {
                 lColor = "text-yellow-600 bg-yellow-50 border-yellow-100";
                 lIcon = '<img src="./assets/Lifebuoy.png" class="w-3 h-3" alt="">';
+            } else if (l === 'enhancement') {
+                lColor = "text-green-600 bg-green-50 border-green-100";
+            } else if (l === 'good first issue') {
+                lColor = "text-indigo-600 bg-indigo-50 border-indigo-100";
             }
+
             return `<span class="flex items-center gap-1 text-[10px] px-2 py-1 font-bold border ${lColor} rounded-full uppercase">${lIcon} ${label}</span>`;
         }).join("") : "";
 
         div.innerHTML = `
-            <div class="bg-white p-4 border-t-4 ${topBorderColor} rounded shadow-sm flex flex-col justify-between h-full transition-all hover:shadow-md">
+            <div class="bg-white p-4 border-t-4 ${topBorderColor} rounded shadow-sm flex flex-col justify-between h-full transition-all hover:shadow-md hover:-translate-y-1">
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <img src="${statusIcon}" class="w-6 h-6" alt="">
